@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<AppDbContext>(opt=>opt.UseSqlServer(
-    "server=DESKTOP-NK9HMU9\\MSSQLSERVER01;database=ProniaTask;trusted_connection=true;integrated security=true;encrypt=false"));
+builder.Services.AddDbContext<AppDbContext>(opt=>
+opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 var app = builder.Build();
 
 
