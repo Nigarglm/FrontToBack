@@ -2,6 +2,7 @@
 using _16Nov_task.Models;
 using _16Nov_task.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace _16Nov_task.Controllers
 {
@@ -16,7 +17,7 @@ namespace _16Nov_task.Controllers
         public IActionResult Index()
         {
             List<Slide> slides = _context.Slides.OrderBy(s => s.Order).Take(2).ToList();
-            List<Product> products = _context.Products.OrderBy(p=>p.Id).Take(8).ToList();
+            List<Product> products = _context.Products.Include(p=>p.ProductImages).OrderBy(p=>p.Id).Take(8).ToList();
 
             {
                 new Slide
