@@ -641,6 +641,14 @@
       "PackagePath": "staticwebassets\\assets\\images\\website-images\\3.png"
     },
     {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\Firtree.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\Firtree.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\cactus.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\cactus.jpeg"
+    },
+    {
       "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\car.png",
       "PackagePath": "staticwebassets\\assets\\images\\website-images\\car.png"
     },
@@ -653,12 +661,44 @@
       "PackagePath": "staticwebassets\\assets\\images\\website-images\\dark.png"
     },
     {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\lilac.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\lilac.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\orchid.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\orchid.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\peony.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\peony.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\purple.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\purple.jpeg"
+    },
+    {
       "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\quotation.png",
       "PackagePath": "staticwebassets\\assets\\images\\website-images\\quotation.png"
     },
     {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\rose.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\rose.jpeg"
+    },
+    {
       "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\service.png",
       "PackagePath": "staticwebassets\\assets\\images\\website-images\\service.png"
+    },
+    {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\tilia.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\tilia.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\tulip.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\tulip.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\whiteflower.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\website-images\\whiteflower.jpeg"
     },
     {
       "Id": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\js\\main.js",
