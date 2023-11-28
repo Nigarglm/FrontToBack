@@ -12,8 +12,8 @@ using _16Nov_task.DAL;
 namespace _16Nov_task.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231127072445_CreateProductImageTableAndDropImageColumnFromProduct")]
-    partial class CreateProductImageTableAndDropImageColumnFromProduct
+    [Migration("20231128195457_CreateProductImageTable")]
+    partial class CreateProductImageTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,9 +93,6 @@ namespace _16Nov_task.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductImageId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -103,8 +100,6 @@ namespace _16Nov_task.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("ProductImageId");
 
                     b.ToTable("ProductImages");
                 });
@@ -158,10 +153,6 @@ namespace _16Nov_task.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_16Nov_task.Models.ProductImage", null)
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductImageId");
-
                     b.Navigation("Product");
                 });
 
@@ -171,11 +162,6 @@ namespace _16Nov_task.Migrations
                 });
 
             modelBuilder.Entity("_16Nov_task.Models.Product", b =>
-                {
-                    b.Navigation("ProductImages");
-                });
-
-            modelBuilder.Entity("_16Nov_task.Models.ProductImage", b =>
                 {
                     b.Navigation("ProductImages");
                 });

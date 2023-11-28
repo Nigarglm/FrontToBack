@@ -1,5 +1,6 @@
 ﻿using _16Nov_task.DAL;
 using _16Nov_task.Models;
+using _16Nov_task.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,11 +22,19 @@ namespace _16Nov_task.Controllers
         {
             if (id <= 0) return BadRequest();
 
-            Product product = _context.Products.Include(p=>p.Category).FirstOrDefault(p => p.Id == id);
+            Product product = _context.Products.Include(p => p.Category).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == id);
 
             if (product == null) return NotFound();
 
-            return View(product);
+            List<Product> products = _context.Products.Include(p=>p.ProductImages).Where(p => p.CategoryId == product.CategoryId && p.Id!=product.Id).ToList();
+
+            DetailVM detailVM = new DetailVM
+            {
+                Product = product,
+                RelatedProducts = products
+            };
+
+            return View(detailVM);
         }
 
         
