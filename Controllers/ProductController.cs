@@ -22,7 +22,11 @@ namespace _16Nov_task.Controllers
         {
             if (id <= 0) return BadRequest();
 
-            Product product = _context.Products.Include(p => p.Category).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == id);
+            Product product = _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.ProductImages)
+                .Include(p=>p.ProductTags).ThenInclude(pt=>pt.Tag)
+                .FirstOrDefault(p => p.Id == id);
 
             if (product == null) return NotFound();
 
