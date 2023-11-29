@@ -26,6 +26,8 @@ namespace _16Nov_task.Controllers
                 .Include(p => p.Category)
                 .Include(p => p.ProductImages)
                 .Include(p=>p.ProductTags).ThenInclude(pt=>pt.Tag)
+                .Include(p=>p.ProductColors).ThenInclude(pt=>pt.Color)
+                .Include(p=>p.ProductSize).ThenInclude(pt=>pt.Size)
                 .FirstOrDefault(p => p.Id == id);
 
             if (product == null) return NotFound();

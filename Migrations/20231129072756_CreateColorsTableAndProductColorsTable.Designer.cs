@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _16Nov_task.DAL;
 
@@ -11,9 +12,11 @@ using _16Nov_task.DAL;
 namespace _16Nov_task.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231129072756_CreateColorsTableAndProductColorsTable")]
+    partial class CreateColorsTableAndProductColorsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,29 +144,6 @@ namespace _16Nov_task.Migrations
                     b.ToTable("ProductImages");
                 });
 
-            modelBuilder.Entity("_16Nov_task.Models.ProductSize", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SizeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("SizeId");
-
-                    b.ToTable("ProductSize");
-                });
-
             modelBuilder.Entity("_16Nov_task.Models.ProductTag", b =>
                 {
                     b.Property<int>("Id")
@@ -185,23 +165,6 @@ namespace _16Nov_task.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("ProductTags");
-                });
-
-            modelBuilder.Entity("_16Nov_task.Models.Size", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Size");
                 });
 
             modelBuilder.Entity("_16Nov_task.Models.Slide", b =>
@@ -271,7 +234,7 @@ namespace _16Nov_task.Migrations
                         .IsRequired();
 
                     b.HasOne("_16Nov_task.Models.Product", "Product")
-                        .WithMany("ProductColors")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -290,25 +253,6 @@ namespace _16Nov_task.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("_16Nov_task.Models.ProductSize", b =>
-                {
-                    b.HasOne("_16Nov_task.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("_16Nov_task.Models.Size", "Size")
-                        .WithMany("ProductSizes")
-                        .HasForeignKey("SizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("_16Nov_task.Models.ProductTag", b =>
@@ -342,16 +286,9 @@ namespace _16Nov_task.Migrations
 
             modelBuilder.Entity("_16Nov_task.Models.Product", b =>
                 {
-                    b.Navigation("ProductColors");
-
                     b.Navigation("ProductImages");
 
                     b.Navigation("ProductTags");
-                });
-
-            modelBuilder.Entity("_16Nov_task.Models.Size", b =>
-                {
-                    b.Navigation("ProductSizes");
                 });
 
             modelBuilder.Entity("_16Nov_task.Models.Tag", b =>
