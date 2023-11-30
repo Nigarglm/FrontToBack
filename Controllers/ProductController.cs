@@ -18,21 +18,24 @@ namespace _16Nov_task.Controllers
         //    return View();
         //}
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id <= 0) return BadRequest();
 
-            Product product = _context.Products
+            Product product = await _context.Products
                 .Include(p => p.Category)
                 .Include(p => p.ProductImages)
                 .Include(p=>p.ProductTags).ThenInclude(pt=>pt.Tag)
                 .Include(p=>p.ProductColors).ThenInclude(pt=>pt.Color)
                 .Include(p=>p.ProductSize).ThenInclude(pt=>pt.Size)
-                .FirstOrDefault(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (product == null) return NotFound();
 
-            List<Product> products = _context.Products.Include(p=>p.ProductImages).Where(p => p.CategoryId == product.CategoryId && p.Id!=product.Id).ToList();
+            List<Product> products = await _context.Products
+                .Include(p=>p.ProductImages)
+                .Where(p => p.CategoryId == product.CategoryId && p.Id!=product.Id)
+                .ToListAsync();
 
             DetailVM detailVM = new DetailVM
             {

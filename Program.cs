@@ -11,6 +11,13 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
 app.MapControllerRoute(
     "default",
     "{controller=home}/{action=index}/{id?}"

@@ -14,10 +14,10 @@ namespace _16Nov_task.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Slide> slides = _context.Slides.OrderBy(s => s.Order).Take(2).ToList();
-            List<Product> products = _context.Products.Include(p=>p.ProductImages.Where(pi=>pi.IsPrimary!=null)).OrderBy(p=>p.Id).Take(8).ToList();
+            List<Slide> slides = await _context.Slides.OrderBy(s => s.Order).Take(2).ToListAsync();
+            List<Product> products = await _context.Products.Include(p=>p.ProductImages.Where(pi=>pi.IsPrimary!=null)).OrderBy(p=>p.Id).Take(8).ToListAsync();
 
             {
                 new Slide

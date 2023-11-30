@@ -24,5 +24,6 @@ namespace _16Nov_task.DAL
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<Size> Size { get; set; }
         public DbSet<ProductSize> ProductSize { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
