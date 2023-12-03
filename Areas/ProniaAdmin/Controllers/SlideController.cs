@@ -66,5 +66,53 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Update(int id)
+        {
+            if (id <= 0) return BadRequest();
+
+            Slide slide = await _context.Slides.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (slide == null) return NotFound();
+
+            return View(slide);
+        }
+        [HttpPost]
+
+        public async Task<IActionResult> Update(Slide slide)
+        {
+            if (!ModelState.IsValid) return View();
+
+            bool result = _context.Slides.Any(s => s.Title == slide.Title);
+
+            if (result)
+            {
+                ModelState.AddModelError("Title", "Bu adli slide artiq movcuddur");
+                return View();
+            }
+
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0) return BadRequest();
+
+            Slide existed = _context.Slides.FirstOrDefault(s => s.Id == id);
+            if (existed == null) return NotFound();
+
+            _context.Slides.Remove(existed);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Detail()
+        {
+            List<Slide> slides = await _context.Slides.ToListAsync();
+            return View(slides);
+        }
     }
 }

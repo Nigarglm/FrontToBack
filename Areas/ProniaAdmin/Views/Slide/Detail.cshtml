@@ -1,0 +1,17 @@
+﻿@using _16Nov_task.Models;
+@model List<Slide>
+
+    @foreach (Slide slide in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <img src="~/assets/images/website-images/@slide.Image" class="card-img-top" alt="@slide.Title">
+        <div class="card-body">
+            <h3 class="card-title">Title: @slide.Subtitle</h3>
+            <h5 class="card-title">Order: @slide.Order</h5>
+            <p class="card-text">Description: @slide.Description</p>
+            <a asp-action="index" asp-controller="slide" class="btn btn-primary">Go slide</a>
+        </div>
+    </div>
+
+}
+

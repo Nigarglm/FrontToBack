@@ -93,6 +93,13 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Detail()
+        {
+            List<Category> categories = await _context.Categories.Include(c => c.Products).ToListAsync();
+
+            return View(categories);
+        }
+
 
     }
 }
