@@ -1,4 +1,6 @@
-﻿namespace _16Nov_task.Models
+﻿
+
+namespace _16Nov_task.Models
 {
     public class Tag
     {

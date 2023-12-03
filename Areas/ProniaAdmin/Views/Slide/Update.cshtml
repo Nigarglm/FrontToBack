@@ -11,6 +11,7 @@
 
                         <form class="forms-sample" method="post">
                             <div class="form-group">
+                                <img src="~/assets/images/website-images/@Model.Image" />
                                 <label asp-for="Photo">Image</label>
                                 <input asp-for="Photo" class="form-control" placeholder="Image">
                                 <span class="text-danger" asp-validation-for="Photo"></span>
@@ -37,7 +38,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
-                            <a asp-action="index" asp-controller="category" class="btn btn-light">Cancel</a>
+                            <a asp-action="index" asp-controller="slide" class="btn btn-light">Cancel</a>
                         </form>
                     </div>
                 </div>

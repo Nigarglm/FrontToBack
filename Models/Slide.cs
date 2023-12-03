@@ -16,7 +16,6 @@ namespace _16Nov_task.Models
         public string? Image { get; set; }
         public int Order { get; set; }
         [NotMapped]
-        [Required]
-        public IFormFile Photo { get; set; }
+        public IFormFile? Photo { get; set; }
     }
 }
