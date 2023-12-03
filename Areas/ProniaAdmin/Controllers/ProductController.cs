@@ -1,14 +1,13 @@
-﻿using _16Nov_task.DAL;
-using Microsoft.AspNetCore.Mvc;
+﻿using _16Nov_task.Areas.ProniaAdmin.ViewModels;
+using _16Nov_task.DAL;
 using _16Nov_task.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using _16Nov_task.Areas.ProniaAdmin.ViewModels;
 using _16Nov_task.Utilities.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 {
-	[Area("ProniaAdmin")]
+    [Area("ProniaAdmin")]
 	public class ProductController : Controller
 	{
 		private readonly AppDbContext _context;
@@ -64,46 +63,78 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-        //public async Task<IActionResult> Update(int id)
-        //{
-        //    if (id <= 0) return BadRequest();
+		public async Task<IActionResult> Update(int id)
+		{
+			if (id <= 0) return BadRequest();
 
-        //    Product existed = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+			Product existed = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
 
-        //    if (existed == null) return NotFound();
+			if (existed == null) return NotFound();
 
-        //    UpdateProductVM productVM = new UpdateProductVM()
-        //    {
-        //        Name=existed.Name,
-        //        Price=existed.Price,
-        //        SKU=existed.SKU,
-        //        Description = existed.Description
-        //    };
+			UpdateProductVM productVM = new UpdateProductVM()
+			{
+				Name = existed.Name,
+				Price = existed.Price,
+				SKU = existed.SKU,
+				Description = existed.Description,
+				CategoryId=(int)existed.CategoryId,
+				Categories=await _context.Categories.ToListAsync(),
+			};
 
-        //    return View(productVM);
-        //}
-        //[HttpPost]
+			return View(productVM);
+		}
+		[HttpPost]
 
-        //public async Task<IActionResult> Update(int id, UpdateProductVM productVM)
-        //{
+		public async Task<IActionResult> Update(int id, UpdateProductVM productVM)
+		{
+
+			if (!ModelState.IsValid)
+			{
+				productVM.Categories = await _context.Categories.ToListAsync();
+				return View();
+			}
+
+			Product existed = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+			if (existed == null) return NotFound();
+
+			bool result = await _context.Products.AnyAsync(p => p.Name == productVM.Name);
+
+			if (!result)
+			{
+				productVM.Categories = await _context.Categories.ToListAsync();
+				ModelState.AddModelError("Name", "Bu adli product artiq movcuddur");
+				return View();
+			}
+
+			existed.Name= productVM.Name;
+			existed.Price= productVM.Price;
+			existed.CategoryId=productVM.CategoryId;
+			existed.SKU= productVM.SKU;
+			existed.Description= productVM.Description;
 
 
-        //    if (!ModelState.IsValid) return View(productVM);
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
 
-        //    Product existed = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
-        //    if (existed == null) return NotFound();
+		}
 
-        //    bool result = _context.Products.Any(p => p.Name == productVM.Name);
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0) return BadRequest();
+            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            if (product == null) return NotFound();
 
-        //    if (result)
-        //    {
-        //        ModelState.AddModelError("Name", "Bu adli product artiq movcuddur");
-        //        return View();
-        //    }
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
 
-        //}
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        public async Task<IActionResult> Detail()
+        {
+            List<Product> products = await _context.Products.ToListAsync();
+            return View(products);
+        }
     }
 }
