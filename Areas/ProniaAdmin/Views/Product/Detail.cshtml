@@ -1,0 +1,21 @@
+﻿@using _16Nov_task.Models;
+@model List<Product>
+
+    @foreach (Product product in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <img src="~/assets/images/website-images/@product.ProductImages.FirstOrDefault()?.Url" class="card-img-top" alt="@product.Name">
+        <div class="card-body">
+            <h3 class="card-title">Name: @product.Name</h3>
+            <h5 class="card-title">Price: @product.Price</h5>
+            <h5 class="card-title">SKU: @product.SKU</h5>
+            <h5 class="card-title">Tags: @product.ProductTags</h5>
+            <h5 class="card-title">Size: @product.ProductSize</h5>
+            <h5 class="card-title">Color: @product.ProductColors</h5>
+            <p class="card-text">Description: @product.Description</p>
+            <a asp-action="index" asp-controller="slide" class="btn btn-primary">Go slide</a>
+        </div>
+    </div>
+
+}
+

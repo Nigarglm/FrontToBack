@@ -13,7 +13,7 @@ namespace _16Nov_task.Models
         public string Subtitle { get; set; }
         [MaxLength(250)]
         public string Description { get; set; }
-        public string? Image { get; set; }
+        public string Image { get; set; }
         public int Order { get; set; }
         [NotMapped]
         public IFormFile? Photo { get; set; }
