@@ -10,6 +10,8 @@ namespace _16Nov_task.Areas.ProniaAdmin.ViewModels
         public string Description { get; set; }
         public string SKU { get; set; }
         public int CategoryId { get; set; }
+        public List<int> TagIds { get; set; }
         public List<Category>? Categories { get; set; }
+        public List<Tag>? Tags { get; set; }
     }
 }
