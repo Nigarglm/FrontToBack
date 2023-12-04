@@ -40,7 +40,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 		public async Task<IActionResult> Create(CreateProductVM productVM)
 		{
             
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
 			{
                 ViewBag.Categories = await _context.Categories.ToListAsync();
                 ViewBag.Tags = await _context.Tags.ToListAsync();
@@ -67,7 +67,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 				}
 			}
 
-			if (productVM.MainPhoto.ValidateType("image/"))
+			if (!productVM.MainPhoto.ValidateType("image/"))
 			{
 				ViewBag.Categories = await _context.Categories.ToListAsync();
 				ViewBag.Tags = await _context.Tags.ToListAsync();
@@ -82,7 +82,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
                 return View();
             }
 
-            if (productVM.HoverPhoto.ValidateType("image/"))
+            if (!productVM.HoverPhoto.ValidateType("image/"))
             {
                 ViewBag.Categories = await _context.Categories.ToListAsync();
                 ViewBag.Tags = await _context.Tags.ToListAsync();

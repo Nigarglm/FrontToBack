@@ -7,7 +7,7 @@
         <div class="card-body">
             <h3 class="card-title">Name: @category.Name</h3>
             <p class="card-text">Product Count: @category.Products.Count</p>
-            @* @foreach (Product product in Model)
+             @foreach (Product product in category.Products)
             {
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
@@ -21,7 +21,7 @@
                         <p class="card-text">Description: @product.Description</p>
                     </div>
                 </div>
-            } *@
+            } 
             
             <a asp-action="index" asp-controller="slide" class="btn btn-primary">Go category</a>
         </div>

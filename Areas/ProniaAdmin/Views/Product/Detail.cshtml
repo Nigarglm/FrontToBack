@@ -4,7 +4,7 @@
     @foreach (Product product in Model)
 {
     <div class="card" style="width: 1000px;">
-        <img src="~/assets/images/website-images/@product.ProductImages" class="card-img-top" alt="@product.Name">
+        <img src="~/assets/images/website-images/@product.ProductImages.FirstOrDefault(pi=>pi.Product.ProductImages==product.ProductImages)" class="card-img-top" alt="@product.Name">
         <div class="card-body">
             <h3 class="card-title">Name: @product.Name</h3>
             <h5 class="card-title">Price: @product.Price</h5>

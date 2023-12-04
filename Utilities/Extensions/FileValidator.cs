@@ -30,7 +30,9 @@ namespace _16Nov_task.Utilities.Extensions
             {
                 path = Path.Combine(path, folders[i]);
             }
-            path = Path.Combine(root);
+
+            path=Path.Combine(path, fileName);
+
             using (FileStream stream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
@@ -43,6 +45,7 @@ namespace _16Nov_task.Utilities.Extensions
         public static async void DeleteFile(this string fileName, string root, params string[] folders)
         {
             string path = root;
+
             for(int i = 0;i < folders.Length;i++)
             {
                 path=Path.Combine(path, folders[i]);

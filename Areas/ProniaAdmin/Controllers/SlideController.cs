@@ -60,7 +60,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
             }
 
             
-            string fileName = await slideVM.Photo.CreateFile(_env.WebRootPath,"assests","images","website-images");
+            string fileName = await slideVM.Photo.CreateFile(_env.WebRootPath,"assets","images","website-images");
 
             Slide slide = new Slide()
             {
