@@ -165,7 +165,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 		{
 			if (id <= 0) return BadRequest();
 
-			Product existed = await _context.Products.Include(p=>p.ProductTags).FirstOrDefaultAsync(p => p.Id == id);
+			Product existed = await _context.Products.Include(p=>p.ProductImages).Include(p=>p.ProductTags).FirstOrDefaultAsync(p => p.Id == id);
 
 			if (existed == null) return NotFound();
 
@@ -177,6 +177,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 				Description = existed.Description,
 				CategoryId=(int)existed.CategoryId,
 				TagIds=existed.ProductTags.Select(pt=>pt.TagId).ToList(),
+				ProductImages= existed.ProductImages,
 				Categories=await _context.Categories.ToListAsync(),
 				Tags=await _context.Tags.ToListAsync()
 			};
