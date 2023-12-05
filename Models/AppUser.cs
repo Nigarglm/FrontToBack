@@ -14,9 +14,9 @@ namespace _16Nov_task.Models
             throw new NotImplementedException();
         }
 
-        public static implicit operator AppUser(userManager<AppUser> v)
-        {
-            throw new NotImplementedException();
-        }
+        //public static implicit operator AppUser(userManager<AppUser> userVM)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

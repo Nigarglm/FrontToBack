@@ -1,5 +1,6 @@
 ﻿using _16Nov_task.DAL;
 using _16Nov_task.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,11 +17,15 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
             _context = context;
             _env = env;
         }
+
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Index()
         {
             List<Color> colors = await _context.Colors.ToListAsync();
             return View(colors);
         }
+
+        [Authorize(Roles = "Admin,Moderator")]
         public IActionResult Create()
         {
             return View();
@@ -46,6 +51,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Update(int id)
         {
             if (id <= 0) return BadRequest();
@@ -78,7 +84,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0) return BadRequest();

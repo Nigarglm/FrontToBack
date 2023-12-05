@@ -2,12 +2,14 @@
 using _16Nov_task.DAL;
 using _16Nov_task.Models;
 using _16Nov_task.Utilities.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 {
     [Area("ProniaAdmin")]
+	
 	public class ProductController : Controller
 	{
 		private readonly AppDbContext _context;
@@ -17,8 +19,8 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 			_context = context;
 			_env = env;
 		}
-
-		public async Task<IActionResult> Index()
+        [Authorize(Roles = "Admin,Moderator")]
+        public async Task<IActionResult> Index()
 		{
 			List<Product> products = await _context.Products
 				.Include(p=>p.Category)
@@ -28,8 +30,8 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 
 			return View(products);
 		}
-
-		public async Task<IActionResult> Create()
+        [Authorize(Roles = "Admin,Moderator")]
+        public async Task<IActionResult> Create()
 		{
 			ViewBag.Categories=await _context.Categories.ToListAsync();
 			ViewBag.Tags=await _context.Tags.ToListAsync();
@@ -161,7 +163,8 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-		public async Task<IActionResult> Update(int id)
+        [Authorize(Roles = "Admin,Moderator")]
+        public async Task<IActionResult> Update(int id)
 		{
 			if (id <= 0) return BadRequest();
 
@@ -262,6 +265,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 
 		}
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0) return BadRequest();
@@ -275,9 +279,10 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 
         }
 
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Detail()
         {
-            List<Product> products = await _context.Products.ToListAsync();
+            List<Product> products = await _context.Products.Include(x=>x.ProductImages).ToListAsync();
             return View(products);
         }
     }

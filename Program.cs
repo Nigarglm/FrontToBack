@@ -32,11 +32,15 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddSession(options=>
 options.IdleTimeout = TimeSpan.FromSeconds(50));
+
+
 var app = builder.Build();
-
-
-app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseSession();
+app.UseStaticFiles();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
