@@ -906,7 +906,7 @@
 			var allSettings = DataTable.settings;
 			for ( i=0, iLen=allSettings.length ; i<iLen ; i++ )
 			{
-				var s = allSettings[i];
+				var s = allsettings[i];
 			
 				/* Base check on table node */
 				if ( s.nTable == this || s.nTHead.parentNode == this || (s.nTFoot && s.nTFoot.parentNode == this) )
@@ -6590,7 +6590,7 @@
 	{
 		if ( fn )
 		{
-			oSettings[sStore].push( {
+			osettings[sStore].push( {
 				"fn": fn,
 				"sName": sName
 			} );

@@ -1,5 +1,6 @@
 ﻿using _16Nov_task.DAL;
 using _16Nov_task.Models;
+using _16Nov_task.Utilities.Exceptions;
 using _16Nov_task.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ namespace _16Nov_task.Controllers
 
         public async Task<IActionResult> Details(int? id)
         {
-            if (id <= 0) return BadRequest();
+            if (id <= 0) throw new WrongRequestException("yalnis sorgu");
 
             Product product = await _context.Products
                 .Include(p => p.Category)
@@ -30,7 +31,7 @@ namespace _16Nov_task.Controllers
                 .Include(p=>p.ProductSize).ThenInclude(pt=>pt.Size)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
-            if (product == null) return NotFound();
+            if (product == null) throw new NotFoundException("mehsul movcud deyil");
 
             List<Product> products = await _context.Products
                 .Include(p=>p.ProductImages)

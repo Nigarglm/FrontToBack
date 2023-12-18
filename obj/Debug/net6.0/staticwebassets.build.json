@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vZPpbOAFznj0TgWwZilD5Hj2YNLiPSi9a0favWbouNE=",
+  "Hash": "2iEKP8MVBLgVQm5lWGGOrHcoSFiFjsrpeDYJFILMq4A=",
   "Source": "16Nov_task",
   "BasePath": "_content/16Nov_task",
   "Mode": "Default",
@@ -4318,6 +4318,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\5878ecd7-6bb2-423f-bba9-8d465f4b44361--1rnu4p.png"
     },
     {
+      "Identity": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\5b844a93-c62c-4545-aae8-62d448611ed51-1-310x220.jpg",
+      "SourceId": "16Nov_task",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\",
+      "BasePath": "_content/16Nov_task",
+      "RelativePath": "assets/images/website-images/5b844a93-c62c-4545-aae8-62d448611ed51-1-310x220.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\5b844a93-c62c-4545-aae8-62d448611ed51-1-310x220.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\60adda6c-28a5-4a81-835c-b60e98c11eba1-1-770x300.jpg",
       "SourceId": "16Nov_task",
       "SourceType": "Discovered",
@@ -4335,6 +4352,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\60adda6c-28a5-4a81-835c-b60e98c11eba1-1-770x300.jpg"
     },
     {
+      "Identity": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\8ad439ed-b8ac-4740-a1e1-611cf90037d21-1-524x617.png",
+      "SourceId": "16Nov_task",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\",
+      "BasePath": "_content/16Nov_task",
+      "RelativePath": "assets/images/website-images/8ad439ed-b8ac-4740-a1e1-611cf90037d21-1-524x617.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\8ad439ed-b8ac-4740-a1e1-611cf90037d21-1-524x617.png"
+    },
+    {
       "Identity": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\a6dccd0e-0237-4fcb-b865-49e33bb56a581-1-524x617.png",
       "SourceId": "16Nov_task",
       "SourceType": "Discovered",
@@ -4350,6 +4384,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\a6dccd0e-0237-4fcb-b865-49e33bb56a581-1-524x617.png"
+    },
+    {
+      "Identity": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\c3cf40cb-8dc0-4bf9-9514-119b81df67b71--1rnu4p.png",
+      "SourceId": "16Nov_task",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\",
+      "BasePath": "_content/16Nov_task",
+      "RelativePath": "assets/images/website-images/c3cf40cb-8dc0-4bf9-9514-119b81df67b71--1rnu4p.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\c3cf40cb-8dc0-4bf9-9514-119b81df67b71--1rnu4p.png"
     },
     {
       "Identity": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\cactus.jpeg",
@@ -4401,6 +4452,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\card.png"
+    },
+    {
+      "Identity": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\cdeca315-eb43-443b-8a46-7bc9862114af1-1-570x633.jpg",
+      "SourceId": "16Nov_task",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\",
+      "BasePath": "_content/16Nov_task",
+      "RelativePath": "assets/images/website-images/cdeca315-eb43-443b-8a46-7bc9862114af1-1-570x633.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\cdeca315-eb43-443b-8a46-7bc9862114af1-1-570x633.jpg"
     },
     {
       "Identity": "C:\\Users\\Work\\Desktop\\16Nov(FrontToBack)\\wwwroot\\assets\\images\\website-images\\dark.png",

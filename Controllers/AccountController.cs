@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using _16Nov_task.Interfaces;
 using _16Nov_task.Models;
 using _16Nov_task.Utilities.Enums;
 using _16Nov_task.ViewModels;
@@ -14,14 +15,16 @@ namespace _16nov_task.controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailService _emailService;
 
         public IdentityResult identityResult { get; private set; }
 
-        public Accountcontroller(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public Accountcontroller(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager,IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _emailService = emailService;
         }
         public IActionResult register()
         {
@@ -65,10 +68,37 @@ namespace _16nov_task.controllers
                     return View();
                 }
 
-                await _userManager.AddToRoleAsync(user,UserRole.Member.ToString());
-                await _signInManager.SignInAsync(user, false);
-                return RedirectToAction("index", "home");
+            await _userManager.AddToRoleAsync(user,UserRole.Member.ToString());
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var confirmationLink = Url.Action(nameof(ConfirmEmail),"Account", new { token, Email=user.Email }, Request.Scheme);
+
+            await _emailService.SendMailAsync(user.Email, "Email Confirmation", confirmationLink);
+            //await _signInManager.SignInAsync(user, false);
+            return RedirectToAction(nameof(SuccessfullyRegistered), "Account");
             
+        }
+
+        public async Task<IActionResult> ConfirmEmail(string token,string email)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+
+            if (@result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+            await _signInManager.SignInAsync(user, false);
+            return View();
+        }
+
+        public IActionResult SuccessfullyRegistered()
+        {
+            return View();
         }
 
         private bool IsValidEmail(string email)
@@ -114,6 +144,12 @@ namespace _16nov_task.controllers
             if(result.IsLockedOut)
             {
                 ModelState.AddModelError(String.Empty, "You insert wrong password 3 times. Please try 30 seconds later.");
+                return View();
+            }
+
+            if (!user.EmailConfirmed)
+            {
+                ModelState.AddModelError(String.Empty, "Please confirm your email");
                 return View();
             }
 

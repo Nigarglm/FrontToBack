@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _16Nov_task.Areas.ProniaAdmin.ViewModels;
 using _16Nov_task.DAL;
 using _16Nov_task.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace _16Nov_task.Areas.ProniaAdmin.Controllers
 {
     [Area("ProniaAdmin")]
+    [AutoValidateAntiforgeryToken]
     public class CategoryController : Controller
     {
         public readonly AppDbContext _context;
@@ -17,11 +19,20 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
         }
 
         [Authorize(Roles = "Admin,Moderator")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page)
         {
-            List<Category> categories = await _context.Categories.Include(c=>c.Products).ToListAsync();
+            double count = await _context.Categories.CountAsync();
 
-            return View(categories);
+            List<Category> categories = await _context.Categories.Skip(page * 2).Take(2).Include(c=>c.Products).ToListAsync();
+
+            PaginateVM<Category> paginateVM = new PaginateVM<Category>
+            {
+                CurrentPage = page + 1,
+                TotalPage = Math.Ceiling(count / 2),
+                Items = categories
+            };
+
+            return View(paginateVM);
         }
 
         [Authorize(Roles = "Admin,Moderator")]

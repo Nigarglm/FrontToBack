@@ -915,7 +915,7 @@
 			var allSettings = DataTable.settings;
 			for ( i=0, iLen=allSettings.length ; i<iLen ; i++ )
 			{
-				var s = allSettings[i];
+				var s = allsettings[i];
 			
 				/* Base check on table node */
 				if (
@@ -6723,7 +6723,7 @@
 	{
 		if ( fn )
 		{
-			oSettings[sStore].push( {
+			osettings[sStore].push( {
 				"fn": fn,
 				"sName": sName
 			} );

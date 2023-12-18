@@ -1,13 +1,25 @@
 using _16Nov_task.DAL;
+using _16Nov_task.Interfaces;
+using _16Nov_task.Middlewares;
 using _16Nov_task.Models;
+using _16Nov_task.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(opt=>
 opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+//builder.Services.AddScoped<LayoutService>();
+
+builder.Services.AddSession(options =>
+options.IdleTimeout = TimeSpan.FromSeconds(5));
+
+
 
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -22,14 +34,18 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 
     options.Lockout.MaxFailedAccessAttempts = 3;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
+    options.Lockout.AllowedForNewUsers = true;
+
+    options.SignIn.RequireConfirmedEmail = true;
 }
 ).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 
 
 builder.Services.AddScoped<LayoutService>();
+builder.Services.AddScoped<IEmailService,EmailService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession(options=>
 options.IdleTimeout = TimeSpan.FromSeconds(50));
 
@@ -41,6 +57,7 @@ app.UseAuthorization();
 app.UseSession();
 app.UseStaticFiles();
 
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(

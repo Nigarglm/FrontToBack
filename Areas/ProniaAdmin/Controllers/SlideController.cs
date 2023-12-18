@@ -22,10 +22,20 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
         }
 
         [Authorize(Roles = "Admin,Moderator")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page)
         {
-            List<Slide> slides = await _context.Slides.ToListAsync();
-            return View(slides);
+            double count = await _context.Slides.CountAsync();
+            List<Slide> slides = await _context.Slides.Skip(page * 2).Take(2).ToListAsync();
+
+            PaginateVM<Slide> paginateVM = new PaginateVM<Slide>
+            {
+                CurrentPage = page + 1,
+                TotalPage = Math.Ceiling(count / 2),
+                Items = slides
+            };
+
+
+            return View(paginateVM);
         }
 
         [Authorize(Roles = "Admin,Moderator")]
@@ -65,7 +75,7 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
             }
 
             
-            string fileName = await slideVM.Photo.CreateFile(_env.WebRootPath,"assets","images","website-images");
+            string fileName = await slideVM.Photo.CreateFileAsync(_env.WebRootPath,"assets","images","website-images");
 
             Slide slide = new Slide()
             {
@@ -134,8 +144,8 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
                     ModelState.AddModelError("Photo", "Faylin hecmi 2 mb-dan boyuk olmamalidir");
                     return View(existed);
                 }
-                string newImage = await slideVM.Photo.CreateFile(_env.WebRootPath, "assests", "images", "website-images");
-                existed.Image.DeleteFile(_env.WebRootPath, "assests", "images", "website-images");
+                string newImage = await slideVM.Photo.CreateFileAsync(_env.WebRootPath, "assets", "images", "website-images");
+                existed.Image.DeleteFile(_env.WebRootPath, "assets", "images", "website-images");
                 existed.Image = newImage;
             }
 

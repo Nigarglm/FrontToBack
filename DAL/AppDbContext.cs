@@ -27,5 +27,8 @@ namespace _16Nov_task.DAL
         public DbSet<Size> Size { get; set; }
         public DbSet<ProductSize> ProductSize { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

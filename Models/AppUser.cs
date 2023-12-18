@@ -8,6 +8,9 @@ namespace _16Nov_task.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Gender { get; internal set; }
+        public List<BasketItem> BasketItems { get; set; }
+        public List<Order> Orders { get; set; }
+
 
         internal Task<IdentityResult> CreateAsync(AppUser user, string password)
         {

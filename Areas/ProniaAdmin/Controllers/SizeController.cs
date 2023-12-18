@@ -1,4 +1,5 @@
-﻿using _16Nov_task.DAL;
+﻿using _16Nov_task.Areas.ProniaAdmin.ViewModels;
+using _16Nov_task.DAL;
 using _16Nov_task.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,10 +20,20 @@ namespace _16Nov_task.Areas.ProniaAdmin.Controllers
         }
 
         [Authorize(Roles = "Admin,Moderator")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page)
         {
-            List<Size> sizes = await _context.Size.ToListAsync();
-            return View(sizes);
+            double count = await _context.Size.CountAsync();
+            List<Size> sizes = await _context.Size.Skip(page * 2).Take(2).ToListAsync();
+
+            PaginateVM<Size> paginateVM = new PaginateVM<Size>
+            {
+                CurrentPage = page + 1,
+                TotalPage = Math.Ceiling(count / 2),
+                Items = sizes
+            };
+
+
+            return View(paginateVM);
         }
 
         [Authorize(Roles = "Admin,Moderator")]
